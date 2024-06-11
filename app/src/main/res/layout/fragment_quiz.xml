@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".QuizFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginEnd="317dp"
+            android:text="Quiz App"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_40sdp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="bottom"
+                android:text="/20"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        android:text="What is the primary function of a router in a network?"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/item_bg"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_margin="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text=" To connect multiple devices wirelessly"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/sub_item_bg"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_margin="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text=" To route data packets between different networks"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/sub_item_bg"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_margin="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:text="To secure the network from threats"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/sub_item_bg"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_margin="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_24sdp"
+        android:text="To provide IP addresses to devices"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/black"
+        android:textStyle="normal"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/sub_item_bg"/>
+    </LinearLayout>
+
+
+</ScrollView>
