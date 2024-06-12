@@ -34,6 +34,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You have got 5 out of 10 "
@@ -66,6 +67,7 @@
                     app:tint="@color/first" />
 
                 <TextView
+                    android:id="@+id/correct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 correct"
@@ -99,6 +101,7 @@
                     app:tint="@color/first" />
 
                 <TextView
+                    android:id="@+id/incorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 incorrect"
@@ -114,7 +117,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-
+            android:id="@+id/exploreBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Explore More Knowledge"
@@ -126,7 +129,7 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
+            android:id="@+id/replay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

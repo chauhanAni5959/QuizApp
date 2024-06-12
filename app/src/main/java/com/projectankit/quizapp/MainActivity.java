@@ -13,8 +13,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+//        it is going to get the fragmemt and replace
+        getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new HomeFragment()).commit();
 
     }
 }
