@@ -3,62 +3,96 @@ package com.projectankit.quizapp;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SubFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.projectankit.quizapp.AdapterClass.SubAdapter;
+import com.projectankit.quizapp.databinding.FragmentHomeBinding;
+import com.projectankit.quizapp.databinding.FragmentSubBinding;
+import com.projectankit.quizapp.modelClass.HomeModel;
+
+import java.util.ArrayList;
+
+
 public class SubFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    FragmentSubBinding binding;
+    ArrayList<HomeModel> list = new ArrayList<>();
+    SubAdapter adapter;
+    String title;
     public SubFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SubFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SubFragment newInstance(String param1, String param2) {
-        SubFragment fragment = new SubFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public SubFragment(String title) {
+        // Required empty public constructor
+        this.title = title;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sub, container, false);
+        binding = FragmentSubBinding.inflate(getLayoutInflater());
+        LoadData();
+        return binding.getRoot();
+    }
+
+    private void LoadData() {
+
+
+        binding.rcv.setLayoutManager(new LinearLayoutManager(getContext()));
+        list.clear();
+
+        switch (title) {
+            case "Category 1":
+                list.add(new HomeModel("Sub1 Category 1", "Des 1"));
+                list.add(new HomeModel("Sub2 Category 1", "Des 1"));
+                list.add(new HomeModel("Sub3 Category 1", "Des 1"));
+                list.add(new HomeModel("Sub4 Category 1", "Des 1"));
+                list.add(new HomeModel("Sub5 Category 1", "Des 1"));
+
+                break;
+            case "Category 2":
+                list.add(new HomeModel("Sub1 Category 2", "Des 2"));
+                list.add(new HomeModel("Sub2 Category 2", "Des 2"));
+                list.add(new HomeModel("Sub3 Category 2", "Des 2"));
+                list.add(new HomeModel("Sub4 Category 2", "Des 2"));
+                list.add(new HomeModel("Sub5 Category 2", "Des 2"));
+
+                break;
+            case "Category 3":
+                list.add(new HomeModel("Sub1 Category 3", "Des 3"));
+                list.add(new HomeModel("Sub2 Category 3", "Des 3"));
+                list.add(new HomeModel("Sub3 Category 3", "Des 3"));
+                list.add(new HomeModel("Sub4 Category 3", "Des 3"));
+                list.add(new HomeModel("Sub5 Category 3", "Des 3"));
+
+                break;
+            case "Category 4":
+                list.add(new HomeModel("Sub1 Category 4", "Des 4"));
+                list.add(new HomeModel("Sub2 Category 4", "Des 4"));
+                list.add(new HomeModel("Sub3 Category 4", "Des 4"));
+                list.add(new HomeModel("Sub4 Category 4", "Des 4"));
+                list.add(new HomeModel("Sub5 Category 4", "Des 4"));
+
+
+                break;
+            case "Category 5":
+                list.add(new HomeModel("Sub1 Category 5", "Des 5"));
+                list.add(new HomeModel("Sub2 Category 5", "Des 5"));
+                list.add(new HomeModel("Sub3 Category 5", "Des 5"));
+                list.add(new HomeModel("Sub4 Category 5", "Des  6"));
+                list.add(new HomeModel("Sub5 Category 5", "Des 5"));
+
+                break;
+        }
+
+
+//        to set the data into page
+        adapter = new SubAdapter(getContext(), list);
+        binding.rcv.setAdapter(adapter);
     }
 }

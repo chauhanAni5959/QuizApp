@@ -10,45 +10,45 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.projectankit.quizapp.QuizFragment;
 import com.projectankit.quizapp.R;
 import com.projectankit.quizapp.SubFragment;
 import com.projectankit.quizapp.modelClass.HomeModel;
 
 import java.util.ArrayList;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class SubAdapter extends RecyclerView.Adapter<SubAdapter.ViewHolder> {
 
     Context context;
     ArrayList<HomeModel> list;
 
 
-
-    public HomeAdapter(Context context, ArrayList<HomeModel> list) {
+    public SubAdapter(Context context, ArrayList<HomeModel> list) {
         this.context = context;
         this.list = list;
     }
 
     @NonNull
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SubAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.home_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.sub_category_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HomeAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SubAdapter.ViewHolder holder, int position) {
         HomeModel model = list.get(position);
         holder.title.setText(model.getTitle());
         holder.des.setText(model.getDes());
 
-//        if someone click on the category it does't give him back
         holder.itemView.setOnClickListener(v->{
 
             AppCompatActivity activity = (AppCompatActivity)  v.getContext();
-            activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new SubFragment(model.getTitle())).addToBackStack(null).commit();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new QuizFragment()).addToBackStack(null).commit();
 
         });
+
     }
 
 
@@ -63,8 +63,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-           title = itemView.findViewById(R.id.Title);
-           des = itemView.findViewById(R.id.des);
+            title = itemView.findViewById(R.id.Title);
+            des = itemView.findViewById(R.id.des);
         }
     }
 }

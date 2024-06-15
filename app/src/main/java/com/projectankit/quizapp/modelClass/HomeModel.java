@@ -1,7 +1,7 @@
 package com.projectankit.quizapp.modelClass;
 
 public class HomeModel {
-//    creating variable for title and descrption
+//    creating variable for title and description
     String title , des;
 
     public HomeModel() {

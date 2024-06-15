@@ -24,7 +24,7 @@ public class StartActivity extends AppCompatActivity {
 //        For creating a Status bar
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.parseColor("#00CCA4"));
+        window.setStatusBarColor(Color.parseColor("#00E89D"));
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
 //        Splash Screen
@@ -34,7 +34,7 @@ public class StartActivity extends AppCompatActivity {
                 startActivity(new Intent(StartActivity.this , MainActivity.class));
                 finish();
             }
-        }, 3000);
+        }, 2000);
 
     }
 }

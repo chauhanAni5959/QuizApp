@@ -8,57 +8,197 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link QuizFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.projectankit.quizapp.databinding.FragmentQuizBinding;
+import com.projectankit.quizapp.modelClass.HomeModel;
+import com.projectankit.quizapp.modelClass.QuizModel;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
+
 public class QuizFragment extends Fragment {
+    FragmentQuizBinding binding;
+    ArrayList<QuizModel> list = new ArrayList<>();
+    private int position  = 0;
+    int right = 0;
+    private static String answer = null;
+    int allQuestions;
+    String listSize;
+    String positionNo;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    QuizModel quizModel;
     public QuizFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment QuizFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static QuizFragment newInstance(String param1, String param2) {
-        QuizFragment fragment = new QuizFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
+     binding = FragmentQuizBinding.inflate(getLayoutInflater());
+     LoadQuestions();
+     EnableOption();
+     ClearOption();
+     binding.nextBtn.setOnClickListener(v->{
+         position++;
+         LoadQuestions();
+         EnableOption();
+         ClearOption();
+         CheckNext();
+     });
+
+        return binding.getRoot();
+    }
+
+    private void CheckNext() {
+
+        if(position == allQuestions){
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new ResultFragment()).commit();
+            list.clear();
+            position = 0;
+
+        }
+    }
+
+    private void ClearOption() {
+
+        binding.option1.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option2.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option3.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option4.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.nextBtn.setBackgroundResource(R.drawable.disable_btn);
+    }
+
+    private void EnableOption() {
+
+        binding.option1.setEnabled(true);
+        binding.option2.setEnabled(true);
+        binding.option3.setEnabled(true);
+        binding.option4.setEnabled(true);
+        binding.nextBtn.setEnabled(false);
+    }
+
+    private void LoadQuestions() {
+
+        list.add(new QuizModel("Question 1","op 1","op 2","op 3","op 4","op 1"));
+        list.add(new QuizModel("Question 2","op 1","op 2","op 3","op 4","op 2"));
+        list.add(new QuizModel("Question 3","op 1","op 2","op 3","op 4","op 3"));
+        list.add(new QuizModel("Question 4","op 1","op 2","op 3","op 4","op 4"));
+        list.add(new QuizModel("question 5","op 1","op 2","op 3","op 4","op 1"));
+
+        allQuestions = 5;
+        listSize  = String.valueOf(allQuestions);
+        binding.totalQ.setText("/" + listSize);
+        binding.qNo.setText(positionNo);
+
+        if(position != allQuestions){
+            positionNo = String.valueOf(position+1);
+        }else{
+            positionNo = String.valueOf(position);
+        }
+
+        quizModel = list.get(position);
+        answer = quizModel.getCorrectAns();
+        binding.questionCont.setText(quizModel.getQuestions());
+        binding.option1.setText(quizModel.getOp1());
+        binding.option2.setText(quizModel.getOp2());
+        binding.option3.setText(quizModel.getOp3());
+        binding.option4.setText(quizModel.getOp4());
+        
+        optionChekup();
+    }
+
+    private void optionChekup() {
+
+        binding.option1.setOnClickListener(v->{
+
+
+            if(Objects.equals(quizModel.getOp1(), quizModel.getCorrectAns())){
+                right++;
+                binding.option1.setBackgroundResource(R.drawable.right_bg);
+            }
+            else{
+                ShowRightAnswer();
+                binding.option1.setBackgroundResource(R.drawable.wrong_bg);
+            }
+
+            DisableOption();
+            binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
+        });
+
+        binding.option2.setOnClickListener(v->{
+
+
+            if(Objects.equals(quizModel.getOp2(), quizModel.getCorrectAns())){
+                right++;
+                binding.option2.setBackgroundResource(R.drawable.right_bg);
+            }
+            else{
+                ShowRightAnswer();
+                binding.option2.setBackgroundResource(R.drawable.wrong_bg);
+            }
+            DisableOption();
+            binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
+
+        });
+        binding.option3.setOnClickListener(v->{
+
+
+            if(Objects.equals(quizModel.getOp3(), quizModel.getCorrectAns())){
+                right++;
+                binding.option3.setBackgroundResource(R.drawable.right_bg);
+            }
+            else{
+                ShowRightAnswer();
+                binding.option3.setBackgroundResource(R.drawable.wrong_bg);
+            }
+            DisableOption();
+            binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
+
+        });
+
+        binding.option4.setOnClickListener(v->{
+
+
+            if(Objects.equals(quizModel.getOp4(), quizModel.getCorrectAns())){
+                right++;
+                binding.option4.setBackgroundResource(R.drawable.right_bg);
+            }
+            else{
+                ShowRightAnswer();
+                binding.option4.setBackgroundResource(R.drawable.wrong_bg);
+            }
+            DisableOption();
+            binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
+
+        });
+
+
+    }
+
+    private void DisableOption() {
+        binding.option1.setEnabled(false);
+        binding.option2.setEnabled(false);
+        binding.option3.setEnabled(false);
+        binding.option4.setEnabled(false);
+        binding.nextBtn.setEnabled(true);
+    }
+
+    private void ShowRightAnswer() {
+
+
+        if(Objects.equals(quizModel.getOp1(), quizModel.getCorrectAns())){
+            binding.option1.setBackgroundResource(R.drawable.right_bg);
+        }
+        else if(Objects.equals(quizModel.getOp2(), quizModel.getCorrectAns())){
+            binding.option2.setBackgroundResource(R.drawable.right_bg);
+        }
+        else  if(Objects.equals(quizModel.getOp3(), quizModel.getCorrectAns())){
+            binding.option3.setBackgroundResource(R.drawable.right_bg);
+        }
+        else  if(Objects.equals(quizModel.getOp4(), quizModel.getCorrectAns())){
+            binding.option4.setBackgroundResource(R.drawable.right_bg);
+        }
+
     }
 }
