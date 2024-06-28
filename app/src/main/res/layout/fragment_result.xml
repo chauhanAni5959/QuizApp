@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ResultFragment">
 
     <LinearLayout
@@ -98,7 +99,7 @@
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/wrong"
-                    app:tint="@color/first" />
+                    app:tint="@color/third"/>
 
                 <TextView
                     android:id="@+id/incorrect"

@@ -45,6 +45,7 @@ public class QuizFragment extends Fragment {
          EnableOption();
          ClearOption();
          CheckNext();
+
      });
 
         return binding.getRoot();
@@ -53,7 +54,7 @@ public class QuizFragment extends Fragment {
     private void CheckNext() {
 
         if(position == allQuestions){
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new ResultFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new ResultFragment(right, allQuestions)).commit();
             list.clear();
             position = 0;
 
@@ -63,9 +64,13 @@ public class QuizFragment extends Fragment {
     private void ClearOption() {
 
         binding.option1.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option1.setTextColor(getContext().getColor(R.color.black));
         binding.option2.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option2.setTextColor(getContext().getColor(R.color.black));
         binding.option3.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option3.setTextColor(getContext().getColor(R.color.black));
         binding.option4.setBackgroundResource(R.drawable.sub_item_bg);
+        binding.option4.setTextColor(getContext().getColor(R.color.black));
         binding.nextBtn.setBackgroundResource(R.drawable.disable_btn);
     }
 
@@ -89,15 +94,17 @@ public class QuizFragment extends Fragment {
         allQuestions = 5;
         listSize  = String.valueOf(allQuestions);
         binding.totalQ.setText("/" + listSize);
-        binding.qNo.setText(positionNo);
+
 
         if(position != allQuestions){
             positionNo = String.valueOf(position+1);
+            binding.qNo.setText(positionNo);
         }else{
             positionNo = String.valueOf(position);
+            binding.qNo.setText(positionNo); 
         }
 
-        quizModel = list.get(position);
+        quizModel = list.get(position); 
         answer = quizModel.getCorrectAns();
         binding.questionCont.setText(quizModel.getQuestions());
         binding.option1.setText(quizModel.getOp1());
@@ -116,10 +123,13 @@ public class QuizFragment extends Fragment {
             if(Objects.equals(quizModel.getOp1(), quizModel.getCorrectAns())){
                 right++;
                 binding.option1.setBackgroundResource(R.drawable.right_bg);
+                binding.option1.setTextColor(getContext().getColor(R.color.white));
             }
             else{
                 ShowRightAnswer();
                 binding.option1.setBackgroundResource(R.drawable.wrong_bg);
+                binding.option1.setTextColor(getContext().getColor(R.color.white));
+
             }
 
             DisableOption();
@@ -132,10 +142,14 @@ public class QuizFragment extends Fragment {
             if(Objects.equals(quizModel.getOp2(), quizModel.getCorrectAns())){
                 right++;
                 binding.option2.setBackgroundResource(R.drawable.right_bg);
+                binding.option2.setTextColor(getContext().getColor(R.color.white));
+
             }
             else{
                 ShowRightAnswer();
                 binding.option2.setBackgroundResource(R.drawable.wrong_bg);
+                binding.option2.setTextColor(getContext().getColor(R.color.white));
+
             }
             DisableOption();
             binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
@@ -147,10 +161,14 @@ public class QuizFragment extends Fragment {
             if(Objects.equals(quizModel.getOp3(), quizModel.getCorrectAns())){
                 right++;
                 binding.option3.setBackgroundResource(R.drawable.right_bg);
+                binding.option3.setTextColor(getContext().getColor(R.color.white));
+
             }
             else{
                 ShowRightAnswer();
                 binding.option3.setBackgroundResource(R.drawable.wrong_bg);
+                binding.option3.setTextColor(getContext().getColor(R.color.white));
+
             }
             DisableOption();
             binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
@@ -163,10 +181,14 @@ public class QuizFragment extends Fragment {
             if(Objects.equals(quizModel.getOp4(), quizModel.getCorrectAns())){
                 right++;
                 binding.option4.setBackgroundResource(R.drawable.right_bg);
+                binding.option4.setTextColor(getContext().getColor(R.color.white));
+
             }
             else{
                 ShowRightAnswer();
                 binding.option4.setBackgroundResource(R.drawable.wrong_bg);
+                binding.option4.setTextColor(getContext().getColor(R.color.white));
+
             }
             DisableOption();
             binding.nextBtn.setBackgroundResource(R.drawable.item_bg);
@@ -189,15 +211,24 @@ public class QuizFragment extends Fragment {
 
         if(Objects.equals(quizModel.getOp1(), quizModel.getCorrectAns())){
             binding.option1.setBackgroundResource(R.drawable.right_bg);
+            binding.option1.setTextColor(getContext().getColor(R.color.white));
+
         }
         else if(Objects.equals(quizModel.getOp2(), quizModel.getCorrectAns())){
             binding.option2.setBackgroundResource(R.drawable.right_bg);
+            binding.option2.setTextColor(getContext().getColor(R.color.white));
+
+
         }
         else  if(Objects.equals(quizModel.getOp3(), quizModel.getCorrectAns())){
             binding.option3.setBackgroundResource(R.drawable.right_bg);
+            binding.option3.setTextColor(getContext().getColor(R.color.white));
+
         }
         else  if(Objects.equals(quizModel.getOp4(), quizModel.getCorrectAns())){
             binding.option4.setBackgroundResource(R.drawable.right_bg);
+            binding.option4.setTextColor(getContext().getColor(R.color.white));
+
         }
 
     }
